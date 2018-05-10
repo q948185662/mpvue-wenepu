@@ -9,18 +9,33 @@
         </div>
         <div class="setting">
             <div class="change-bind-user">
-                <button>修改绑定学号</button>
+                <button @click="changeBindUser">修改绑定学号</button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import { showActionSheet } from '../../utils/actionSheet'
+import { clearStorage } from '../../utils/storage'
+import { reLaunch } from '../../utils/navigate'
+
 export default {
   name: 'More',
   computed: {
     schoolNumber () {
       return this.$store.state.user.userName
+    }
+  },
+  methods: {
+    changeBindUser () {
+      showActionSheet([
+        '修改绑定学号'
+      ]).then(() => {
+        clearStorage().then(() => {
+          reLaunch('/pages/home/main')
+        })
+      })
     }
   }
 }
