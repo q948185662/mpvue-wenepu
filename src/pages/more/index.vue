@@ -58,6 +58,41 @@ page {
                 }
             }
         }
+
+        .setting {
+            background-color: #fff;
+            box-sizing: border-box;
+            box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+            border-radius: 4px;
+            margin: 0 20px;
+            padding: 20px;
+            position: absolute;
+            top: 160px;
+            width: calc(100% - 40px);
+
+            .change-bind-user {
+
+                button {
+                    background-color: #e71d36;
+                    border-radius: 4px;
+                    border: none;
+                    color: #fff;
+                    font-size: 14px;
+                    height: 40px;
+                    line-height: 40px;
+
+                    &:after {
+                        border: none;
+                    }
+
+                    &:active {
+                        background-color: #fff;
+                        border: 1px solid #e71d36;
+                        color: #e71d36;
+                    }
+                }
+            }
+        }
     }
 }
 </style>
