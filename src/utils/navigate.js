@@ -6,6 +6,13 @@ const navigateTo = url => {
   })
 }
 
+const reLaunch = url => {
+  wx.reLaunch({
+    url
+  })
+}
+
 export {
-  navigateTo
+  navigateTo,
+  reLaunch
 }
