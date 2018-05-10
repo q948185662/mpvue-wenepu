@@ -11,7 +11,8 @@ export default {
   config: {
     pages: [
       '^pages/home/main',
-      'pages/more/main'
+      'pages/more/main',
+      'pages/bind/main'
     ],
     window: {
       backgroundTextStyle: 'light',
