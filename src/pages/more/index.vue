@@ -7,6 +7,11 @@
                 <open-data type="userNickName" class="wechat-nick-name"></open-data>
             </div>
         </div>
+        <div class="setting">
+            <div class="change-bind-user">
+                <button>修改绑定学号</button>
+            </div>
+        </div>
     </div>
 </template>
 
