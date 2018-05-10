@@ -18,6 +18,25 @@ export default {
       navigationBarBackgroundColor: '#0080ff',
       navigationBarTitleText: 'We 东油',
       navigationBarTextStyle: 'white'
+    },
+    tabBar: {
+      borderStyle: 'black',
+      selectedColor: '#0080ff',
+      backgroundColor: '#fff',
+      list: [
+        {
+          pagePath: 'pages/home/main',
+          iconPath: 'static/images/tab-bar/home.png',
+          selectedIconPath: 'static/images/tab-bar/selected-home.png',
+          text: '首页'
+        },
+        {
+          pagePath: 'pages/more/main',
+          iconPath: 'static/images/tab-bar/more.png',
+          selectedIconPath: 'static/images/tab-bar/selected-more.png',
+          text: '更多'
+        }
+      ]
     }
   }
 }
