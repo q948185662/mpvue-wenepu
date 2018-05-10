@@ -9,7 +9,11 @@ app.$mount()
 
 export default {
   config: {
-    pages: ['pages/logs/main', '^pages/index/main'],
+    pages: [
+      'pages/logs/main',
+      'pages/index/main',
+      '^pages/home/main'
+    ],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
