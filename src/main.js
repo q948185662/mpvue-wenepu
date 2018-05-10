@@ -10,7 +10,8 @@ app.$mount()
 export default {
   config: {
     pages: [
-      '^pages/home/main'
+      '^pages/home/main',
+      'pages/more/main'
     ],
     window: {
       backgroundTextStyle: 'light',
