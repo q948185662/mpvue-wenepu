@@ -10,8 +10,6 @@ app.$mount()
 export default {
   config: {
     pages: [
-      'pages/logs/main',
-      'pages/index/main',
       '^pages/home/main'
     ],
     window: {
