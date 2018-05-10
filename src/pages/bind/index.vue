@@ -2,16 +2,55 @@
     <div id="bind">
         <div class="background"></div>
         <div class="bind-user-form">
-            <input type="text" placeholder="请输入学号"/>
-            <input type="password" placeholder="请输入密码"/>
-            <button>绑定</button>
+            <input type="text" placeholder="请输入学号" v-model="user.userName"/>
+            <input type="password" placeholder="请输入密码" v-model="user.password"/>
+            <button @click="bindUser" :loading="loading">绑定</button>
         </div>
     </div>
 </template>
 
 <script>
+import { showNavigationBarLoading, hideNavigationBarLoading } from '../../utils/loading'
+import { showToast } from '../../utils/toast'
+import { reLaunch } from '../../utils/navigate'
+
 export default {
-  name: 'Bind'
+  name: 'Bind',
+  data () {
+    return {
+      user: {
+        userName: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    async bindUser () {
+      const user = this.user
+      if (user.userName !== '' && user.password !== '') {
+        showNavigationBarLoading('绑定中')
+        try {
+          await this.$store.dispatch('bindUser', user)
+          hideNavigationBarLoading('绑定')
+          await showToast({
+            title: '绑定成功！'
+          })
+          reLaunch('/pages/home/main')
+        } catch (error) {
+          hideNavigationBarLoading('绑定')
+          const index = Number(error.indexOf('，'))
+          const errorMessage = error.substring(0, index) + '，绑定失败！'
+          showToast({
+            title: errorMessage
+          })
+        }
+      } else {
+        showToast({
+          title: '学号或密码不能为空！'
+        })
+      }
+    }
+  }
 }
 </script>
 
