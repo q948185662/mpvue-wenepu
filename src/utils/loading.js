@@ -7,6 +7,14 @@ const showNavigationBarLoading = title => {
   })
 }
 
+const hideNavigationBarLoading = title => {
+  wx.setNavigationBarTitle({
+    title
+  })
+  wx.hideNavigationBarLoading()
+}
+
 export {
-  showNavigationBarLoading
+  showNavigationBarLoading,
+  hideNavigationBarLoading
 }
