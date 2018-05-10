@@ -19,5 +19,17 @@ export default {
     } catch (error) {
       return Promise.reject(error)
     }
+  },
+  async bindUser ({ commit }, user) {
+    try {
+      await Promise.all([
+        this.dispatch('getAppToken', user),
+        this.dispatch('getWebToken', user)
+      ])
+      await setStorage('user', user)
+      commit('SET_USER', user)
+    } catch (error) {
+      return Promise.reject(error)
+    }
   }
 }
