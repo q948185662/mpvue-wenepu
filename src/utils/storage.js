@@ -14,6 +14,11 @@ const getStorage = key => {
   })
 }
 
+const getStorageSync = key => {
+  return wx.getStorageSync(key)
+}
+
 export {
-  getStorage
+  getStorage,
+  getStorageSync
 }
