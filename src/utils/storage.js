@@ -33,8 +33,22 @@ const setStorage = (key, data) => {
   })
 }
 
+const clearStorage = () => {
+  return new Promise((resolve, reject) => {
+    wx.clearStorage({
+      success () {
+        resolve()
+      },
+      fail (error) {
+        reject(error)
+      }
+    })
+  })
+}
+
 export {
   getStorage,
   getStorageSync,
-  setStorage
+  setStorage,
+  clearStorage
 }
