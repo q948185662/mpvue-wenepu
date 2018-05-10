@@ -3,7 +3,7 @@
         <div class="user-info">
             <open-data type="userAvatarUrl" class="avatar"></open-data>
             <div class="name">
-                <div class="school-number"></div>
+                <div class="school-number">{{ schoolNumber }}</div>
                 <open-data type="userNickName" class="wechat-nick-name"></open-data>
             </div>
         </div>
@@ -17,7 +17,12 @@
 
 <script>
 export default {
-  name: 'More'
+  name: 'More',
+  computed: {
+    schoolNumber () {
+      return this.$store.state.user.userName
+    }
+  }
 }
 </script>
 
