@@ -9,6 +9,16 @@ const getAppToken = user => request({
   }
 })
 
+const getWebToken = user => request({
+  url: '/authentication/web-token',
+  method: 'POST',
+  data: user,
+  header: {
+    'content-type': 'application/x-www-form-urlencoded;charset=UTF-8'
+  }
+})
+
 export {
-  getAppToken
+  getAppToken,
+  getWebToken
 }
