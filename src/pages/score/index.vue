@@ -2,7 +2,8 @@
     <div id="score">
         <div class="background"></div>
         <div class="semester-picker">
-            <picker>
+            <picker :range="semesterList" @change="changeSemester" :value="index">
+              {{ semester }}
             </picker>
             <button>查询</button>
         </div>
@@ -10,8 +11,63 @@
 </template>
 
 <script>
+import { getStorage, getStorageSync, clearStorage } from '../../utils/storage'
+import { showNavigationBarLoading, hideNavigationBarLoading } from '../../utils/loading'
+import { mapState } from 'vuex'
+import { showToast } from '../../utils/toast'
+import { navigateBack, reLaunch } from '../../utils/navigate'
+
 export default {
-  name: 'Score'
+  name: 'Score',
+  methods: {
+    async getSemesterList () {
+      try {
+        await getStorage('semesterList')
+      } catch (error) {
+        showNavigationBarLoading('获取开课学期列表中')
+        try {
+          await this.$store.dispatch('getSemesterList')
+          hideNavigationBarLoading('成绩')
+        } catch (error) {
+          hideNavigationBarLoading('成绩')
+          const message = error.substring(0, error.indexOf('，'))
+          if (message === '服务器错误') {
+            await showToast({
+              title: '服务器错误，获取开课学期列表失败，请稍后再试！'
+            })
+            navigateBack('/pages/home/main')
+          } else {
+            await showToast({
+              title: '学号或密码错误，请重新绑定！'
+            })
+            clearStorage().then(() => {
+              reLaunch('/pages/home/main')
+            })
+          }
+        }
+      }
+    },
+    changeSemester (event) {
+      const index = event.mp.detail.value
+      this.semester = this.semesterList[index]
+    }
+  },
+  onShow () {
+    this.getSemesterList()
+  },
+  data () {
+    return {
+      semester: getStorageSync('semester') || '全部学期'
+    }
+  },
+  computed: {
+    ...mapState([
+      'semesterList'
+    ]),
+    index () {
+      return this.semesterList.indexOf(this.semester) || 0
+    }
+  }
 }
 </script>
 
