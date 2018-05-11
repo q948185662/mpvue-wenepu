@@ -13,7 +13,7 @@
                 <div>绩点：{{scores.gradePointAverage}}</div>
             </div>
             <div class="score-list">
-                <div class="score-item" v-for="(item, index) in scores.scoreList" :key="index">
+                <div class="score-item" v-for="(item, index) in scores.scoreList" :key="index" @click="toggleScoreDetail">
                     <div class="score-main">
                         <div class="course-name">
                             {{ item.courseName }}
@@ -21,6 +21,22 @@
                         <div class="course-score">
                             {{ item.courseScore }}
                         </div>
+                    </div>
+                    <div class="score-detail" v-if="item.visible">
+                        <div>开课学期：{{item.courseSemester}}</div>
+                        <div v-if="item.scoreSign">成绩标志：{{item.scoreSign}}</div>
+                        <div>课程性质：{{item.courseNature}}</div>
+                        <div>课程类别：{{item.courseType}}</div>
+                        <div>课程学时：{{item.courseHour}}</div>
+                        <div>课程学分：{{item.courseCredit}}</div>
+                        <div>考试性质：{{item.examNature}}</div>
+                        <div v-if="item.supplementSemester">补重学期：{{item.supplementSemester}}</div>
+                        <div v-if="scoreDetail.regular">平时成绩：{{scoreDetail.regular}}</div>
+                        <div v-if="scoreDetail.regular">平时成绩比例：{{scoreDetail.regularProportion}}</div>
+                        <div v-if="scoreDetail.midterm">期中成绩：{{scoreDetail.midterm}}</div>
+                        <div v-if="scoreDetail.midterm">期中成绩比例：{{scoreDetail.midtermProportion}}</div>
+                        <div v-if="scoreDetail.endterm">期末成绩：{{scoreDetail.endterm}}</div>
+                        <div v-if="scoreDetail.endterm">期末成绩比例：{{scoreDetail.endtermProportion}}</div>
                     </div>
                 </div>
             </div>
