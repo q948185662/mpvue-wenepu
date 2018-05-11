@@ -10,5 +10,11 @@ export default {
   },
   SET_SEMESTER_LIST (state, semesterList) {
     state.semesterList = semesterList
+  },
+  SET_SCORES (state, scores) {
+    scores.scoreList.forEach(scoreItem => {
+      scoreItem.visible = false
+    })
+    state.scores = scores
   }
 }
