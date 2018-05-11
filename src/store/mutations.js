@@ -7,5 +7,8 @@ export default {
   },
   SET_USER (state, user) {
     state.user = user
+  },
+  SET_SEMESTER_LIST (state, semesterList) {
+    state.semesterList = semesterList
   }
 }
