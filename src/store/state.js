@@ -6,5 +6,6 @@ export default {
   user: getStorageSync('user') || {},
   semesterList: getStorageSync('semesterList') || [
     '全部学期'
-  ]
+  ],
+  scores: {}
 }
