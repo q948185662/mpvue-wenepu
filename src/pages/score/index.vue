@@ -12,6 +12,18 @@
                 <div>学分：{{scores.credit}}</div>
                 <div>绩点：{{scores.gradePointAverage}}</div>
             </div>
+            <div class="score-list">
+                <div class="score-item" v-for="(item, index) in scores.scoreList" :key="index">
+                    <div class="score-main">
+                        <div class="course-name">
+                            {{ item.courseName }}
+                        </div>
+                        <div class="course-score">
+                            {{ item.courseScore }}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -165,9 +177,9 @@ page {
         .score-info {
             box-sizing: border-box;
             position: absolute;
+            margin: 0 20px;
             top: 120px;
             width: calc(100% - 40px);
-            margin: 0 20px;
 
             .score-abstract {
                 display: flex;
