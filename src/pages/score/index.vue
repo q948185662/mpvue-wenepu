@@ -107,6 +107,47 @@ export default {
           })
         }
       }
+    },
+    async getScoreDetail (scoreDetailUrl) {
+      showNavigationBarLoading('获取成绩详情中')
+      try {
+        await this.$store.dispatch('getScoreDetail', scoreDetailUrl)
+        hideNavigationBarLoading('成绩')
+      } catch (error) {
+        hideNavigationBarLoading('成绩')
+        const message = error.substring(0, error.indexOf('，'))
+        if (message === '服务器错误') {
+          await showToast({
+            title: '服务器错误，获取成绩详情失败，请稍后再试！'
+          })
+          navigateBack('/pages/home/main')
+        } else {
+          await showToast({
+            title: '学号或密码错误，请重新绑定！'
+          })
+          clearStorage().then(() => {
+            reLaunch('/pages/home/main')
+          })
+        }
+      }
+    },
+    async toggleScoreDetail (event) {
+      const index = Number(event.currentTarget.dataset.eventid.substring(2))
+      let scoreList = this.scores.scoreList
+      for (let i = 0, length = scoreList.length; i < length; i++) {
+        if (i === index) {
+          if (scoreList[i].visible) {
+            scoreList[i].visible = false
+          } else {
+            const scoreDetailUrl = scoreList[i].scoreDetailUrl
+            await this.getScoreDetail(scoreDetailUrl)
+            scoreList[i].visible = true
+          }
+        } else {
+          scoreList[i].visible = false
+        }
+      }
+      this.scores.scoreList = scoreList
     }
   },
   onShow () {
@@ -120,7 +161,8 @@ export default {
   computed: {
     ...mapState([
       'semesterList',
-      'scores'
+      'scores',
+      'scoreDetail'
     ]),
     index () {
       return this.semesterList.indexOf(this.semester) || 0
