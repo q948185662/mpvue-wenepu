@@ -19,7 +19,20 @@ const getScores = (semester, webToken) => request({
   }
 })
 
+const getScoreDetail = (scoreDetailUrl, webToken) => request({
+  url: '/scores/detail',
+  data: {
+    scoreDetailUrl
+  },
+  method: 'POST',
+  header: {
+    'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+    webToken
+  }
+})
+
 export {
   getSemesterList,
-  getScores
+  getScores,
+  getScoreDetail
 }
