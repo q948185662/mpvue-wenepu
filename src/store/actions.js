@@ -1,6 +1,6 @@
 import { getAppToken, getWebToken } from '../api/authentication'
 import { setStorage } from '../utils/storage'
-import { getSemesterList } from '../api/score'
+import { getSemesterList, getScores } from '../api/score'
 
 export default {
   async getAppToken ({ commit }, user) {
@@ -49,6 +49,30 @@ export default {
           const { semesterList } = await getSemesterList(webToken)
           await setStorage('semesterList', semesterList)
           commit('SET_SEMESTER_LIST', semesterList)
+        } catch (error) {
+          return Promise.reject(error)
+        }
+      } else {
+        return Promise.reject(error)
+      }
+    }
+  },
+  async getScores ({ commit }, semester) {
+    try {
+      const { webToken } = this.state
+      const { scores } = await getScores(semester, webToken)
+      await setStorage('semester', semester)
+      commit('SET_SCORES', scores)
+    } catch (error) {
+      const message = error.substring(0, error.indexOf('，'))
+      if (message === 'web token 错误') {
+        try {
+          const { user } = this.state
+          await this.dispatch('getWebToken', user)
+          const { webToken } = this.state
+          const { scores } = await getScores(semester, webToken)
+          await setStorage('semester', semester)
+          commit('SET_SCORES', scores)
         } catch (error) {
           return Promise.reject(error)
         }
