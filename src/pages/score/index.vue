@@ -7,6 +7,12 @@
             </picker>
             <button @click="getScores">查询</button>
         </div>
+        <div class="score-info" v-if="showScoreInfo">
+            <div class="score-abstract">
+                <div>学分：{{scores.credit}}</div>
+                <div>绩点：{{scores.gradePointAverage}}</div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -85,10 +91,14 @@ export default {
   },
   computed: {
     ...mapState([
-      'semesterList'
+      'semesterList',
+      'scores'
     ]),
     index () {
       return this.semesterList.indexOf(this.semester) || 0
+    },
+    showScoreInfo () {
+      return this.scores.credit !== undefined
     }
   }
 }
