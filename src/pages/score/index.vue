@@ -178,6 +178,7 @@ page {
             box-sizing: border-box;
             position: absolute;
             margin: 0 20px;
+            padding-bottom: 20px;
             top: 120px;
             width: calc(100% - 40px);
 
@@ -198,6 +199,44 @@ page {
 
                     &:first-child {
                         margin-right: 20px;
+                    }
+                }
+            }
+
+            .score-list {
+                margin-top: 20px;
+
+                .score-item {
+                    background-color: #fff;
+                    border-radius: 4px;
+                    box-sizing: border-box;
+                    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+                    margin-bottom: 20px;
+                    padding: 20px;
+
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+
+                    .score-main {
+                        display: flex;
+
+                        .course-name {
+                            color: #606266;
+                            flex: 7;
+                            font-size: 14px;
+                            height: 40px;
+                            line-height: 40px;
+                        }
+
+                        .course-score {
+                            flex: 3;
+                            font-size: 36px;
+                            height: 40px;
+                            line-height: 40px;
+                            text-align: right;
+                        }
                     }
                 }
             }
