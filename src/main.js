@@ -14,7 +14,8 @@ export default {
     pages: [
       '^pages/home/main',
       'pages/more/main',
-      'pages/bind/main'
+      'pages/bind/main',
+      'pages/score/main'
     ],
     window: {
       backgroundTextStyle: 'light',
