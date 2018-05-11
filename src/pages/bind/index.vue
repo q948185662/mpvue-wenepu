@@ -77,7 +77,7 @@ page {
             width: calc(100% - 40px);
 
             input {
-                border: 1px solid #dcdfe6;;
+                border: 1px solid #dcdfe6;
                 border-radius: 4px;
                 box-sizing: border-box;
                 font-size: 14px;
