@@ -254,6 +254,25 @@ page {
                             text-align: right;
                         }
                     }
+
+                    .score-detail {
+                        border-top: 1px solid #dcdfe6;
+                        border-bottom: 1px solid #dcdfe6;
+                        display: block;
+                        font-size: 12px;
+                        height: auto;
+                        margin-top: 10px;
+                        padding: 10px 0;
+
+                        div {
+                            color: #606266;
+                            margin-bottom: 10px;
+
+                            &:last-child {
+                                margin-bottom: 0;
+                            }
+                        }
+                    }
                 }
             }
         }
