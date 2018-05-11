@@ -7,5 +7,6 @@ export default {
   semesterList: getStorageSync('semesterList') || [
     '全部学期'
   ],
-  scores: {}
+  scores: {},
+  scoreDetail: {}
 }
