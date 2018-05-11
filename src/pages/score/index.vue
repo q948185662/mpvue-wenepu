@@ -5,7 +5,7 @@
             <picker :range="semesterList" @change="changeSemester" :value="index">
               {{ semester }}
             </picker>
-            <button>查询</button>
+            <button @click="getScores">查询</button>
         </div>
     </div>
 </template>
@@ -50,6 +50,29 @@ export default {
     changeSemester (event) {
       const index = event.mp.detail.value
       this.semester = this.semesterList[index]
+    },
+    async getScores () {
+      showNavigationBarLoading('获取成绩中')
+      try {
+        await this.$store.dispatch('getScores', this.semester)
+        hideNavigationBarLoading('成绩')
+      } catch (error) {
+        hideNavigationBarLoading('成绩')
+        const message = error.substring(0, error.indexOf('，'))
+        if (message === '服务器错误') {
+          await showToast({
+            title: '服务器错误，获取成绩失败，请稍后再试！'
+          })
+          navigateBack('/pages/home/main')
+        } else {
+          await showToast({
+            title: '学号或密码错误，请重新绑定！'
+          })
+          clearStorage().then(() => {
+            reLaunch('/pages/home/main')
+          })
+        }
+      }
     }
   },
   onShow () {
