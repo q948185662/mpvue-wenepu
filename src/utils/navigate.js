@@ -12,7 +12,14 @@ const reLaunch = url => {
   })
 }
 
+const navigateBack = url => {
+  wx.navigateBack({
+    url
+  })
+}
+
 export {
   navigateTo,
-  reLaunch
+  reLaunch,
+  navigateBack
 }
