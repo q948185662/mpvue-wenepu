@@ -161,6 +161,35 @@ page {
                 }
             }
         }
+
+        .score-info {
+            box-sizing: border-box;
+            position: absolute;
+            top: 120px;
+            width: calc(100% - 40px);
+            margin: 0 20px;
+
+            .score-abstract {
+                display: flex;
+
+                div {
+                    background-color: #fff;
+                    box-sizing: border-box;
+                    border-radius: 4px;
+                    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+                    color: #606266;
+                    flex: 1;
+                    font-size: 14px;
+                    height: 80px;
+                    line-height: 80px;
+                    text-align: center;
+
+                    &:first-child {
+                        margin-right: 20px;
+                    }
+                }
+            }
+        }
     }
 }
 </style>
