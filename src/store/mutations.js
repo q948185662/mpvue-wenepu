@@ -16,5 +16,8 @@ export default {
       scoreItem.visible = false
     })
     state.scores = scores
+  },
+  SET_SCORE_DETAIL (state, scoreDetail) {
+    state.scoreDetail = scoreDetail
   }
 }
