@@ -20,7 +20,12 @@ const dateToTimeStamp = date => {
   return Date.parse(new Date(year + '-' + month + '-' + day)) / 1000
 }
 
+const isInDate = (startDate, endDate, date) => {
+  return dateToTimeStamp(startDate) <= dateToTimeStamp(date) && dateToTimeStamp(date) <= dateToTimeStamp(endDate)
+}
+
 export {
   getCurrentDate,
-  dateToTimeStamp
+  dateToTimeStamp,
+  isInDate
 }
