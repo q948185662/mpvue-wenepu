@@ -24,8 +24,32 @@ const isInDate = (startDate, endDate, date) => {
   return dateToTimeStamp(startDate) <= dateToTimeStamp(date) && dateToTimeStamp(date) <= dateToTimeStamp(endDate)
 }
 
+const fixWeek = week => {
+  const { weekStartTime, weekEndTime } = week
+  const [ weekStartTimeArray, weekEndTimeArray ] = [ weekStartTime.split('-'), weekEndTime.split('-') ]
+  const [
+    weekStartYear,
+    weekStartMonth,
+    weekStartDay,
+    weekEndYear,
+    weekEndMonth,
+    weekEndDay
+  ] = [
+    Number(weekStartTimeArray[0]),
+    Number(weekStartTimeArray[1]),
+    Number(weekStartTimeArray[2]) - 1,
+    Number(weekEndTimeArray[0]),
+    Number(weekEndTimeArray[1]),
+    Number(weekEndTimeArray[2]) - 1
+  ]
+  week.weekStartTime = weekStartYear + '-' + weekStartMonth + '-' + weekStartDay
+  week.weekEndTime = weekEndYear + '-' + weekEndMonth + '-' + weekEndDay
+  return week
+}
+
 export {
   getCurrentDate,
   dateToTimeStamp,
-  isInDate
+  isInDate,
+  fixWeek
 }
