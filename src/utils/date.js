@@ -12,6 +12,15 @@ const getCurrentDate = () => {
   return year + '-' + month + '-' + day
 }
 
+const dateToTimeStamp = date => {
+  const dateArray = date.split('-')
+  const year = Number(dateArray[0])
+  const month = Number(dateArray[1])
+  const day = Number(dateArray[2])
+  return Date.parse(new Date(year + '-' + month + '-' + day)) / 1000
+}
+
 export {
-  getCurrentDate
+  getCurrentDate,
+  dateToTimeStamp
 }
