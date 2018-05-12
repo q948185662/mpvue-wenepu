@@ -6,7 +6,7 @@
                 <img src="https://resource.mignon.me/wenepu/images/icon/home/menu/score.png"/>
                 <div class="label">成绩</div>
             </navigator>
-            <navigator hover-class="navigator-hover">
+            <navigator url="/pages/course-table/main" hover-class="navigator-hover">
                 <img src="https://resource.mignon.me/wenepu/images/icon/home/menu/course-table.png"/>
                 <div class="label">课程表</div>
             </navigator>

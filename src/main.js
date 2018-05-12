@@ -15,7 +15,8 @@ export default {
       '^pages/home/main',
       'pages/more/main',
       'pages/bind/main',
-      'pages/score/main'
+      'pages/score/main',
+      'pages/course-table/main'
     ],
     window: {
       backgroundTextStyle: 'light',
