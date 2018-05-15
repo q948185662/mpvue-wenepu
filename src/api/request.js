@@ -1,32 +1,22 @@
-import wx from '../utils/wx'
 import { baseUrl } from '../config'
+import cutie from './cutie'
 
-const request = ({
-  url,
-  method = 'GET',
-  data = {},
-  header = {}
-}) => {
-  return new Promise((resolve, reject) => {
-    wx.request({
-      url: baseUrl + url,
-      method,
-      data,
-      header,
-      success ({ data }) {
-        const statusCode = data.code
-        if (statusCode === 200) {
-          resolve(data)
-        } else {
-          const errorMessage = data.message
-          reject(errorMessage)
-        }
-      },
-      fail (error) {
-        reject(error)
-      }
-    })
-  })
+cutie.interceptors.response.use(async ({ data }) => {
+  const { code } = data
+  if (code === 200) {
+    return data
+  } else if (code === 500) {
+    return Promise.reject('服务器错误')
+  } else {
+    const { message } = data
+    return Promise.reject(message)
+  }
+})
+
+const request = config => {
+  const { url } = config
+  config.url = baseUrl + url
+  return cutie.request(config)
 }
 
 export default request
