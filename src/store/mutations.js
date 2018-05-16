@@ -19,5 +19,8 @@ export default {
   },
   SET_SCORE_DETAIL (state, scoreDetail) {
     state.scoreDetail = scoreDetail
+  },
+  SET_CURRENT_WEEK (state, currentWeek) {
+    state.currentWeek = currentWeek
   }
 }
