@@ -8,5 +8,6 @@ export default {
     '全部学期'
   ],
   scores: {},
-  scoreDetail: {}
+  scoreDetail: {},
+  currentWeek: getStorageSync('currentWeek') || {}
 }
