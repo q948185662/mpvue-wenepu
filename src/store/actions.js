@@ -1,6 +1,8 @@
 import { getAppToken, getWebToken } from '../api/authentication'
 import { setStorage } from '../utils/storage'
 import { getSemesterList, getScores, getScoreDetail } from '../api/score'
+import { getCurrentDate, fixWeek } from '../utils/date'
+import { getCurrentWeek } from '../api/time'
 
 export default {
   async getAppToken ({ commit }, user) {
@@ -58,6 +60,18 @@ export default {
       const { webToken } = this.state
       const { scoreDetail } = await getScoreDetail(scoreDetailUrl, webToken)
       commit('SET_SCORE_DETAIL', scoreDetail)
+    } catch (error) {
+      return Promise.reject(error)
+    }
+  },
+  async getCurrentWeek ({ commit }) {
+    try {
+      const { appToken } = this.state
+      const currentDate = getCurrentDate()
+      let { currentTime: currentWeek } = await getCurrentWeek(currentDate, appToken)
+      currentWeek = fixWeek(currentWeek)
+      await setStorage('currentWeek', currentWeek)
+      commit('SET_CURRENT_WEEK', currentWeek)
     } catch (error) {
       return Promise.reject(error)
     }
