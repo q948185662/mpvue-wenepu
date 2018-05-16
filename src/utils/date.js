@@ -25,8 +25,8 @@ const isInDate = (startDate, endDate, date) => {
 }
 
 const fixWeek = week => {
-  const { weekStartTime, weekEndTime } = week
-  const [ weekStartTimeArray, weekEndTimeArray ] = [ weekStartTime.split('-'), weekEndTime.split('-') ]
+  const { weekStartDate, weekEndDate } = week
+  const [ weekStartDateArray, weekEndDateArray ] = [ weekStartDate.split('-'), weekEndDate.split('-') ]
   const [
     weekStartYear,
     weekStartMonth,
@@ -35,15 +35,15 @@ const fixWeek = week => {
     weekEndMonth,
     weekEndDay
   ] = [
-    Number(weekStartTimeArray[0]),
-    Number(weekStartTimeArray[1]),
-    Number(weekStartTimeArray[2]) - 1,
-    Number(weekEndTimeArray[0]),
-    Number(weekEndTimeArray[1]),
-    Number(weekEndTimeArray[2]) - 1
+    Number(weekStartDateArray[0]),
+    Number(weekStartDateArray[1]),
+    Number(weekStartDateArray[2]) - 1,
+    Number(weekEndDateArray[0]),
+    Number(weekEndDateArray[1]),
+    Number(weekEndDateArray[2]) - 1
   ]
-  week.weekStartTime = weekStartYear + '-' + weekStartMonth + '-' + weekStartDay
-  week.weekEndTime = weekEndYear + '-' + weekEndMonth + '-' + weekEndDay
+  week.weekStartDate = weekStartYear + '-' + weekStartMonth + '-' + weekStartDay
+  week.weekEndDate = weekEndYear + '-' + weekEndMonth + '-' + weekEndDay
   return week
 }
 
