@@ -9,5 +9,6 @@ export default {
   ],
   scores: {},
   scoreDetail: {},
-  currentWeek: getStorageSync('currentWeek') || {}
+  currentWeek: getStorageSync('currentWeek') || {},
+  courseTable: getStorageSync('courseTable') || {}
 }
