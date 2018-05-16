@@ -22,5 +22,8 @@ export default {
   },
   SET_CURRENT_WEEK (state, currentWeek) {
     state.currentWeek = currentWeek
+  },
+  SET_COURSE_TABLE (state, courseTable) {
+    state.courseTable = courseTable
   }
 }
