@@ -3,6 +3,7 @@ import { setStorage } from '../utils/storage'
 import { getSemesterList, getScores, getScoreDetail } from '../api/score'
 import { getCurrentDate, fixWeek } from '../utils/date'
 import { getCurrentWeek } from '../api/time'
+import { getCourseTable } from '../api/course'
 
 export default {
   async getAppToken ({ commit }, user) {
@@ -72,6 +73,23 @@ export default {
       currentWeek = fixWeek(currentWeek)
       await setStorage('currentWeek', currentWeek)
       commit('SET_CURRENT_WEEK', currentWeek)
+    } catch (error) {
+      return Promise.reject(error)
+    }
+  },
+  async getCourseTable ({ commit }) {
+    try {
+      const { webToken } = this.state
+      const { semester, weekly } = this.state.currentWeek
+      const { userName } = this.state.user
+      const { courseTable } = await getCourseTable(
+        semester,
+        weekly,
+        userName,
+        webToken
+      )
+      await setStorage('courseTable', courseTable)
+      commit('SET_COURSE_TABLE', courseTable)
     } catch (error) {
       return Promise.reject(error)
     }
